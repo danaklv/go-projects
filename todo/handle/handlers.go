@@ -7,4 +7,5 @@ func Handlers() {
 	http.HandleFunc("/login", LoginPageHandler)
 	http.HandleFunc("/register", RegisterPageHandler)
 	
+	
 }
