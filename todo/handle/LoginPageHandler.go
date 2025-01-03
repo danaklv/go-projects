@@ -9,20 +9,7 @@ import (
 
 func LoginPageHandler(w http.ResponseWriter, r *http.Request) {
 
-	if r.Method == http.MethodGet {
-		tmpl, err := template.ParseFiles("front/templates/login.html")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		err = tmpl.ExecuteTemplate(w, "login", "")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-	} else if r.Method == http.MethodPost {
+	 if r.Method == http.MethodPost {
 
 		email := r.FormValue("email")
 		password := r.FormValue("password")
@@ -45,6 +32,10 @@ func LoginPageHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Incorrect email or password")
 
 		}
+
+	} else {
+		w.WriteHeader(http.StatusLoopDetected)
+		fmt.Println("Incorecct method")
 
 	}
 

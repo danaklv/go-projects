@@ -1,6 +1,14 @@
 body {
-    margin: 100px;
+    margin: 0;
+	padding: 0;
     background-color: #E6E4D8;
     color: #22333B;
-    
+  
+}
+
+
+.mainImg img {
+    width: 500px;
+   
+  
 }
