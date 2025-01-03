@@ -13,15 +13,25 @@
 
 #chk{
 	display: none;
+    
 }
-.signup{
+.signup {
     width: 400px;
-    /* margin-top: 300px; */
+    display: none;
+    position: relative;
+    left: 50%;
+    bottom: 500px;
 	background: #eee;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
+
+
+.signup.active {
+    display: block;
+}
+
 label{
 	color: #573b8a;
 	font-size: 3.5em;
@@ -55,7 +65,7 @@ button{
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
-    margin-bottom: 100px;
+   
 	outline: none;
 	border: none;
 	border-radius: 5px;
@@ -67,20 +77,23 @@ button:hover{
 }
 .login{
 	
+    display: none;
     width: 400px;
-    /* margin-top: 300px; */
     position: relative;
     left: 50%;
-    bottom: 450px;
+    bottom: 500px;
 	background: #eee;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
-.login label{
-	color: #573b8a;
-	transform: scale(.6);
+
+
+
+.login.active {
+    display: block;
 }
+
 
 #chk:checked ~ .login{
 	transform: translateY(-500px);
@@ -90,4 +103,52 @@ button:hover{
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);
+}
+
+
+.switch button {
+    width: 50%;
+    text-decoration: none;
+    
+    font-size: 0.9em;
+}
+.forgotPassword button {
+    width: 50%;
+    text-decoration: none;
+    margin-bottom: 50px;
+    font-size: 0.9em;
+}
+
+
+.recoverPassword {
+    width: 400px;
+    display: none;
+    position: relative;
+    left: 50%;
+    bottom: 500px;
+	background: #eee;
+	border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+}
+
+.recoverPassword.active {
+    display: block;
+}
+
+.resetPassword {
+    width: 400px;
+    display: none;
+    position: relative;
+    left: 50%;
+    bottom: 500px;
+	background: #eee;
+	border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+}
+
+.recoverPassword.active {
+    display: block;
+
 }
