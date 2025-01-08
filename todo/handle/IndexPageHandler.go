@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func MainPageHandler(w http.ResponseWriter, r *http.Request) {
+func IndexPageHandler(w http.ResponseWriter, r *http.Request) {
 
 	t, err := template.ParseFiles("front/templates/index.html", "front/styles/style.css")
 	if err != nil {

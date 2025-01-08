@@ -1,10 +1,21 @@
 package models
 
-type Task struct {
+type Playlist struct {
 	Id int
-	Date string
-	Status bool
+	CreateDate string
 	Title string
-	Description string
+	User User
+	Artists []Artist
+
 }
 
+type Artist struct {
+	Id int
+	Name string
+	Songs []Song
+}
+
+type Song struct {
+	Id int
+	CreateDate string
+}
