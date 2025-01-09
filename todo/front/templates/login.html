@@ -1,0 +1,21 @@
+{{ define "login"}}
+
+<link rel="stylesheet" href="../static/styles/logregstyle.css">
+
+<div class="login active" id="loginForm">
+    <form action="/login" method="post">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" name="email" placeholder="Email" required="">
+        <input type="password" name="password" placeholder="Password" required="">
+        <button type="submit">Login</button>
+    </form>
+    <div class="switch">
+        <button onclick="showRegister()">Dont have an account?</button>
+    </div>
+   <div class="switch">
+    <button onclick="showRecoverPassword()">Forgot Password</button>
+  </div>
+</div>
+
+
+{{ end }}

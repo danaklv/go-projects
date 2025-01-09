@@ -3,12 +3,12 @@ package app
 import (
 	"fmt"
 	"net/http"
-	"todo/database"
 	"todo/handle"
+	"todo/repositories"
 )
 
 func Run() {
-	database.ConnectToDb()
+	repositories.ConnectToDb()
 	handle.Handlers()
 	http.ListenAndServe(":8080", nil)
 	fmt.Println("http://localhost:8080/")

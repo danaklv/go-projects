@@ -1,0 +1,23 @@
+{{ define "register" }}
+
+<link rel="stylesheet" href="../static/styles/logregstyle.css">
+
+<div class="signup" id="registerForm">
+    <form action="/register" method="post">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="name" placeholder="User name" required="">
+        <input type="email" name="email" placeholder="Email" required="">
+        <input type="password" name="password" placeholder="Password" required="">
+        <button type="submit">Sign up</button>
+    </form>
+    <div class="switch" style="margin-bottom: 50px;">
+        <button onclick="showLogin()">Arleady have account?</button>
+    </div>
+
+</div>
+
+
+{{ end }}
+
+
+

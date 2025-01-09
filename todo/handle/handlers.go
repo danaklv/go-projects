@@ -1,18 +1,20 @@
 package handle
 
-import "net/http"
+import (
+	"net/http"
+	"todo/internal/controllers"
+)
 
 func Handlers() {
-	http.Handle("/styles/", http.StripPrefix("/styles/", http.FileServer(http.Dir("front/styles"))))
-	http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("front/img"))))
+	http.Handle("/styles/", http.StripPrefix("/styles/", http.FileServer(http.Dir("front/static/styles"))))
+	http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("front/static/img"))))
 
-	http.HandleFunc("/", IndexPageHandler)
-	http.HandleFunc("/login", LoginPageHandler)
-	http.HandleFunc("/register", RegisterPageHandler)
-	http.HandleFunc("/forgotPassword", PasswordHandler)
-	http.HandleFunc("/main", PersonalPageHandler)
-	http.HandleFunc("/create", CreatePlaylistHandler)
-	http.HandleFunc("/logout", LogoutHandler)
-	http.HandleFunc("/home", HomePageHandler)
+	http.HandleFunc("/", controllers.HomeController)
+	http.HandleFunc("/login", controllers.LoginController)
+	http.HandleFunc("/register",  controllers.RegisterController)
+	http.HandleFunc("/forgotPassword",  controllers.PasswordController)
+
+	http.HandleFunc("/create",  controllers.CreateController)
+	http.HandleFunc("/logout",  controllers.LogoutController)
 
 }
