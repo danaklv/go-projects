@@ -1,9 +1,8 @@
 package repositories
 
-
 import (
 	"database/sql"
-	"fmt"
+	"errors"
 	"log"
 	"todo/models"
 
@@ -11,65 +10,42 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+var DB *sql.DB
+
 func ConnectToDb() {
-	db, err := sql.Open("postgres", "user=postgres password=dana1234 host=localhost dbname=todos sslmode=disable")
+	var err error
+	DB, err = sql.Open("postgres", "user=postgres password=dana1234 host=localhost dbname=todos sslmode=disable")
 	if err != nil {
-		fmt.Println("here")
 		log.Fatalf("Error: Unable to connect to database: %v", err)
 	}
-	defer db.Close()
-
-	res, err := db.Exec("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY,name VARCHAR  NOT NULL,email VARCHAR  NOT NULL,password VARCHAR  NOT NULL)")
-
-	if err != nil {
-		log.Fatalf("Error: Unable to create table: %v", err)
-	}
-
-	res.RowsAffected()
 
 }
 
 func InsertUserIntoDb(user *models.User) {
-	db, err := sql.Open("postgres", "user=postgres password=dana1234 host=localhost dbname=todos sslmode=disable")
-	if err != nil {
-		fmt.Println("im here")
-		log.Fatalf("Error: Unable to connect to database: %v", err)
-	}
-	defer db.Close()
 
 	hashedPassword := string(HashPassword(user.Password))
 
 	stmt := `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`
-	res, err := db.Exec(stmt, user.Name, user.Email, hashedPassword)
+	_, err := DB.Exec(stmt, user.Name, user.Email, hashedPassword)
 	if err != nil {
 		log.Fatalf("Error: Unable to INSERT INTO users: %v", err)
 	}
 
-	res.RowsAffected()
 }
 
-func ChechUserInDb(email, password string) bool {
-	db, err := sql.Open("postgres", "user=postgres password=dana1234 host=localhost dbname=todos sslmode=disable")
-	if err != nil {
-		fmt.Println("im here")
-		log.Fatalf("Error: Unable to connect to database: %v", err)
-	}
-	defer db.Close()
+func CheckUserInDb(email, password string) bool {
 
 	passwordInDb := ""
-	if err := db.QueryRow("SELECT password FROM users WHERE email = $1", email).Scan(&passwordInDb); err != nil {
+	if err := DB.QueryRow("SELECT password FROM users WHERE email = $1", email).Scan(&passwordInDb); err != nil {
 		if err == sql.ErrNoRows {
 			return false
 		}
 		log.Fatalf("Error: Unable to select form database: %v", err)
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(passwordInDb), []byte(password))
-	if err != nil {
-		return false
-	}
+	err := bcrypt.CompareHashAndPassword([]byte(passwordInDb), []byte(password))
 
-	return true
+	return err == nil
 }
 
 func HashPassword(password string) []byte {
@@ -84,21 +60,14 @@ func HashPassword(password string) []byte {
 
 }
 
-func SelectNameFromDb(email string) string {
-	db, err := sql.Open("postgres", "user=postgres password=dana1234 host=localhost dbname=todos sslmode=disable")
-	if err != nil {
-		
-		log.Fatalf("Error: Unable to connect to database: %v", err)
-	}
-	defer db.Close()
-
-	name := ""
-	if err := db.QueryRow("SELECT name FROM users WHERE email = $1", email).Scan(&name); err != nil {
+func GetUserIdFromDb(email string) (int, error) {
+	id := 0
+	if err := DB.QueryRow("SELECT id FROM users WHERE email = $1", email).Scan(&id); err != nil {
 		if err == sql.ErrNoRows {
-			return ""
+			return 0, errors.New("No Such User")
 		}
 		log.Fatalf("Error: Unable to select form database: %v", err)
 	}
-	return name
+	return id, nil
 
 }

@@ -6,11 +6,11 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-var store = sessions.NewCookieStore([]byte("I_DONT_KNOW"))
+var Store = sessions.NewCookieStore([]byte("I_DONT_KNOW"))
 
 func CreateNewSession(w http.ResponseWriter, r *http.Request, email string) {
 
-	session, _ := store.Get(r, "session-name")
+	session, _ := Store.Get(r, "session-name")
 
 	session.Values["email"] = email
 	session.Values["authenticated"] = true

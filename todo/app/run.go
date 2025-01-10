@@ -8,7 +8,9 @@ import (
 )
 
 func Run() {
+
 	repositories.ConnectToDb()
+	defer repositories.DB.Close()
 	handle.Handlers()
 	http.ListenAndServe(":8080", nil)
 	fmt.Println("http://localhost:8080/")

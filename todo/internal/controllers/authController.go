@@ -3,7 +3,6 @@ package controllers
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"todo/models"
 	"todo/repositories"
@@ -25,9 +24,9 @@ func LoginController(w http.ResponseWriter, r *http.Request) {
 		email := r.FormValue("email")
 		password := r.FormValue("password")
 
-		if repositories.ChechUserInDb(email, password) {
+		if repositories.CheckUserInDb(email, password) {
 			session.CreateNewSession(w, r, email)
-			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			http.Redirect(w, r, "/", http.StatusSeeOther)
 			return
 
 		} else {
@@ -52,29 +51,19 @@ func RegisterController(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodPost {
-		id := 0
 		name := r.FormValue("name")
 		email := r.FormValue("email")
 		password := r.FormValue("password")
-		user := models.User{id, name, email, password}
+		user := models.User{
+			Name:     name,
+			Email:    email,
+			Password: password,
+		}
 
 		if utils.UserValidation(user) {
 			repositories.InsertUserIntoDb(&user)
+			http.Redirect(w,r,"/login", http.StatusSeeOther)
 		} else {
-			tmpl, err := template.ParseFiles("front/templates/index.html")
-			if err != nil {
-				log.Fatal("Error with parsing files ", err)
-				return
-			}
-
-			tmpl.Execute(w, map[string]string{
-				"Error": "User with this email arleady exist",
-			})
-
-			if err != nil {
-				log.Fatal("Error with parsing files ", err)
-				return
-			}
 			fmt.Println("User with this email arleady exist")
 		}
 
