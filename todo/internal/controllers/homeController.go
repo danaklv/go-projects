@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -28,8 +27,6 @@ func HomeController(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		fmt.Println(playlists[1].ImagePath)
 
 		tmpl.ExecuteTemplate(w, "base", playlists)
 		return

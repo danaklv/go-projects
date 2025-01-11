@@ -5,27 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-         .playlist {
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            display: inline-block;
-            text-align: center;
-        }
-        .playlist img {
-            max-width: 200px;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px;
-        }
-    </style>
- 
+    <link rel="stylesheet" href="/static/styles/style.css">
+   
 </head>
 <body>
 
-    <h1>Personal Page</h1>
+    <div class="header">
+        <h1>Personal Page</h1>
+
+        
+    <div class="logout">
+        <form action="/logout">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+    
+    </div>
+
+   
    
 
 
@@ -51,11 +48,6 @@
 
 
     
-    <div class="logout">
-        <form action="/logout">
-            <button type="submit">Logout</button>
-        </form>
-    </div>
 
     
 

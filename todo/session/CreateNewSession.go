@@ -15,7 +15,14 @@ func CreateNewSession(w http.ResponseWriter, r *http.Request, email string) {
 	session.Values["email"] = email
 	session.Values["authenticated"] = true
 
+	session.Options = &sessions.Options{
+		MaxAge: 0,
+	}
+
+
 	session.Save(r, w)
+
+
 
 }
 

@@ -7,7 +7,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
+ 
+	background-color:  #E6E4D8;
+	color:  #22333B;
+   
 }
 
 /* Контейнер для логина и регистрации */
@@ -48,8 +51,8 @@ body {
 .login button {
     width: 90%;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color:#22333B;
+    color:  #E6E4D8;
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -58,12 +61,21 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.login button:hover {
-    background-color: #45a049;
-}
+
 
 /* Установка расстояния между кнопками */
 form {
     margin: 0;
     padding: 0;
+}
+
+
+.text-button button {
+    background: none;
+    border: none;
+    color:  #22333B;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
 }
