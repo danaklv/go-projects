@@ -10,36 +10,41 @@ import (
 )
 
 func CreateController(w http.ResponseWriter, r *http.Request) {
-
-	title := r.FormValue("title")
 	session, _ := session.Store.Get(r, "session-name")
-	email, _ := session.Values["email"].(string)
-	userId, err := repositories.GetUserIdFromDb(email)
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	file, header, err := r.FormFile("image")
+	if email, ok := session.Values["email"].(string); ok {
 
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+		title := r.FormValue("title")
+		
+		userId, err := repositories.GetUserIdFromDb(email)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	filePath, err := services.UploadImage(file, header)
-	if err != nil {
-		log.Fatal(err)
-	}
+		file, header, err := r.FormFile("image")
 
-	playlist := models.Playlist{
-		Title:     title,
-		UserId:    userId,
-		ImagePath: filePath,
-	}
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer file.Close()
 
-	err = repositories.InsertPlaylistInBd(playlist)
-	if err != nil {
-		log.Fatal(err)
+		filePath, err := services.UploadImage(file, header)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		playlist := models.Playlist{
+			Title:     title,
+			UserId:    userId,
+			ImagePath: filePath,
+		}
+
+		err = repositories.InsertPlaylistInBd(playlist)
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
 
 }
