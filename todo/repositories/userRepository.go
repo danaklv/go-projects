@@ -2,7 +2,6 @@ package repositories
 
 import (
 	"database/sql"
-	"errors"
 	"log"
 	"todo/models"
 
@@ -64,7 +63,7 @@ func GetUserIdFromDb(email string) (int, error) {
 	id := 0
 	if err := DB.QueryRow("SELECT id FROM users WHERE email = $1", email).Scan(&id); err != nil {
 		if err == sql.ErrNoRows {
-			return 0, errors.New("No Such User")
+			return 0, err
 		}
 		log.Fatalf("Error: Unable to select form database: %v", err)
 	}

@@ -1,0 +1,39 @@
+{{ define "playlist" }}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="createPlaylist">
+    <form action="/playlist/{{.PlaylistId}}" method="post">
+        <input type="text" name="title">Input title <br>
+        <input type="text" name="artist">Input Artist name <br>
+        <button type="submit">Add</button>
+
+    </form>
+</div>
+
+    
+    <div class="playlists">
+        {{range .Songs}}
+        <div class="playlist">
+            <h1>{{.Title}}</h1>
+            <h3>{{.Artist.Name}}</h3>
+        </div>
+        {{end}}
+    </div>
+    
+
+
+</body>
+</html>
+
+{{ end }}

@@ -19,6 +19,12 @@ type Artist struct {
 
 type Song struct {
 	Id         int
+	Title   string
 	CreateDate time.Time
-	ArtistId int
+	Artist Artist
+}
+
+type PlaylistSongs struct {
+	PlaylistId int
+	Songs []Song
 }

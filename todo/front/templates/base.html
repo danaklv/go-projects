@@ -19,7 +19,7 @@
             <button type="submit">Logout</button>
         </form>
     </div>
-    
+
     </div>
 
    
@@ -38,10 +38,12 @@
 
     <div class="playlists">
         {{range .}}
+    <a href="/playlist/{{.Id}}">
         <div class="playlist">
             <img src="{{.ImagePath}}" alt="{{.Title}}">
             <h1>{{.Title}}</h1>
         </div>
+    </a>
 
         {{ end }}
     </div>

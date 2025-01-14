@@ -98,6 +98,11 @@ body {
     display: inline-block;
     text-align: center;
 }
+
+.playlists a {
+    text-decoration: none;
+    color:  #22333B;
+}
 .playlist img {
     width: 300px;
     
