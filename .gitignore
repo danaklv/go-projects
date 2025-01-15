@@ -1,1 +1,1 @@
-music/services/passwordService
+music/internal/services/passwordService.go
