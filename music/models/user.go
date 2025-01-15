@@ -11,3 +11,9 @@ type User struct {
 
 
 
+type ResetPassword struct {
+	Email string
+	ErrorCode error
+	SuccessCode string
+
+}
