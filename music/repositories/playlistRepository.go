@@ -67,6 +67,28 @@ func GetSongsFromDb(playlistId int) ([]models.Song, error) {
 	return songs, nil
 }
 
+
+func GetSongsByArtistId(artistId int) ([]models.Song, error) {
+
+	query := `SELECT title FROM songs WHERE artist_id = $1`
+	rows, err := DB.Query(query, artistId)
+	if err != nil {
+		return nil, fmt.Errorf("error querying songs: %v", err)
+	}
+	var songs []models.Song
+
+	for rows.Next() {
+		var song models.Song
+		rows.Scan(&song.Title)
+
+		songs = append(songs, song)
+
+	}
+
+	return songs, nil
+}
+
+
 func GetArtistId(name string) int {
 	id := 0
 	query := `SELECT id FROM artists WHERE name = $1`

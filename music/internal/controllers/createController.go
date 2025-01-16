@@ -15,7 +15,7 @@ func CreateController(w http.ResponseWriter, r *http.Request) {
 	if email, ok := session.Values["email"].(string); ok {
 
 		title := r.FormValue("title")
-		
+
 		userId, err := repositories.GetUserIdFromDb(email)
 		if err != nil {
 			log.Fatal(err)
@@ -29,6 +29,7 @@ func CreateController(w http.ResponseWriter, r *http.Request) {
 		defer file.Close()
 
 		filePath, err := services.UploadImage(file, header)
+
 		if err != nil {
 			log.Fatal(err)
 		}

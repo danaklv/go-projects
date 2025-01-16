@@ -4,14 +4,13 @@ import (
 	"io"
 	"mime/multipart"
 	"os"
-	"path/filepath"
 )
 
 func UploadImage(file multipart.File, header *multipart.FileHeader) (string, error) {
-	
+
 	title := header.Filename
-	filePath := filepath.Join("uploads", title) 
-	outFile, err := os.Create(filePath)
+
+	outFile, err := os.Create(title)
 	if err != nil {
 		return "", err
 	}
@@ -22,5 +21,5 @@ func UploadImage(file multipart.File, header *multipart.FileHeader) (string, err
 		return "", err
 	}
 
-	return filePath, err
+	return title, err
 }

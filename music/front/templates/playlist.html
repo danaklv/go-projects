@@ -26,7 +26,10 @@
         {{range .Songs}}
         <div class="playlist">
             <h1>{{.Title}}</h1>
+            
+            <a href="/artist/{{.Artist.Id}}">
             <h3>{{.Artist.Name}}</h3>
+             </a>
         </div>
         {{end}}
     </div>

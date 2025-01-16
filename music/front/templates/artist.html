@@ -1,3 +1,5 @@
+{{define "artist"}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,23 @@
     <title>Document</title>
 </head>
 <body>
+
+    <h1>{{.Name}}</h1>
+    <img src="/uploads/{{.ImagePath}}" alt="">
+
+    {{range .Songs}}
+    <h2>{{.Title}}</h2>
+
+    {{end}}
+
+    <form action="/uploadArtistImage" method="post" enctype="multipart/form-data">
+        <input type="text" name="artistId"  hidden value="{{.Id}}" >
+        <input type="file" name="image">
+        <button type="submit">Upload Photo</button>
+    </form>
     
     
 </body>
 </html>
+
+{{end}}

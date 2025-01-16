@@ -24,5 +24,9 @@ func Handlers() {
 	
 	http.HandleFunc("/resetPassword", controllers.ResetPasswordController)
 
+	http.HandleFunc("/artist/", controllers.ArtistController)
+
+	http.HandleFunc("/uploadArtistImage", controllers.UploadArtistImageController)
+
 
 }

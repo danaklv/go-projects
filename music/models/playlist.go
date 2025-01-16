@@ -15,6 +15,7 @@ type Artist struct {
 	Id    int
 	Name  string
 	Songs []Song
+	ImagePath string
 }
 
 type Song struct {
