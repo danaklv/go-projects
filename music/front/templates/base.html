@@ -22,6 +22,17 @@
 
     </div>
 
+    <div class="artists-container">
+        {{range .Artists}}
+        <div class="artist">
+            <a href="/artist/{{.Id}}">
+                <img src="/uploads/{{.ImagePath}}" alt="">
+                <h1>{{.Name}}</h1>
+            </a>
+        </div>
+        {{end}}
+    </div>
+
    
 
     <div class="createPlaylist">
@@ -34,7 +45,7 @@
 
 
     <div class="playlists">
-        {{range .}}
+        {{range .Playlists}}
     <a href="/playlist/{{.Id}}">
         <div class="playlist">
             <img src="/uploads/{{.ImagePath}}" alt="{{.Title}}">

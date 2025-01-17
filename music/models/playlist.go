@@ -29,3 +29,8 @@ type PlaylistSongs struct {
 	PlaylistId int
 	Songs []Song
 }
+
+type ArtistsAndPlaylists struct {
+	Playlists []Playlist
+	Artists []Artist
+}

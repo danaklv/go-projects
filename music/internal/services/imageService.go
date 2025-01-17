@@ -10,7 +10,7 @@ func UploadImage(file multipart.File, header *multipart.FileHeader) (string, err
 
 	title := header.Filename
 
-	outFile, err := os.Create(title)
+	outFile, err := os.Create("uploads/" + title)
 	if err != nil {
 		return "", err
 	}

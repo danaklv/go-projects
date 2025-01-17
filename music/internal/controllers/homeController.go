@@ -3,7 +3,8 @@ package controllers
 import (
 	"log"
 	"net/http"
-	"strings"
+	"todo/internal/services"
+	"todo/models"
 	"todo/repositories"
 	"todo/session"
 )
@@ -20,15 +21,21 @@ func HomeController(w http.ResponseWriter, r *http.Request) {
 
 		playlists, err := repositories.SelectPlaylistsFromBd(userId)
 
-		for i := range playlists {
-			playlists[i].ImagePath = strings.ReplaceAll(playlists[i].ImagePath, "\\", "/")
-		}
-
+		// for i := range playlists {
+		// 	playlists[i].ImagePath = strings.ReplaceAll(playlists[i].ImagePath, "\\", "/")
+		// }
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		tmpl.ExecuteTemplate(w, "base", playlists)
+		artists := services.GetArtistsByPlaylists(playlists)
+
+		data := models.ArtistsAndPlaylists{
+			Playlists: playlists,
+			Artists:   artists,
+		}
+
+		tmpl.ExecuteTemplate(w, "base", data)
 		return
 
 	} else {

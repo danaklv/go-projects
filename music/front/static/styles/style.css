@@ -111,3 +111,43 @@ body {
     display: block;
     margin: 0 auto 10px;
 }
+
+
+.artists-container {
+    overflow-x: auto; /* Включает горизонтальную прокрутку */
+    white-space: nowrap; /* Элементы будут располагаться в одну строку */
+    display: flex; /* Используем flexbox для управления расположением */
+    gap: 10px; /* Отступы между элементами */
+    padding: 10px;
+    scrollbar-width: thin; /* Тонкая полоса прокрутки для Firefox */
+}
+
+.artists-container::-webkit-scrollbar {
+    height: 8px; /* Высота полосы прокрутки */
+}
+
+.artists-container::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет полосы прокрутки */
+    border-radius: 4px; /* Закругленные края */
+}
+
+.artists-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Цвет полосы при наведении */
+}
+
+.artist {
+    display: inline-block; /* Элементы будут отображаться в строке */
+    text-align: center; /* Выравнивание текста */
+    width: 150px; /* Ширина каждого артиста */
+}
+
+.artist img {
+    width: 100%; /* Изображение занимает всю ширину */
+    height: auto; /* Сохраняет пропорции изображения */
+    border-radius: 8px; /* Закругленные углы изображения */
+}
+
+.artist h1 {
+    font-size: 16px; /* Размер шрифта заголовка */
+    margin: 10px 0 0; /* Отступ сверху */
+}
