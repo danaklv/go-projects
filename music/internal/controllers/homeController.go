@@ -12,7 +12,7 @@ import (
 func HomeController(w http.ResponseWriter, r *http.Request) {
 
 	session, _ := session.Store.Get(r, "session-name")
-
+   //Check Authentication
 	if email, ok := session.Values["email"].(string); ok {
 		userId, err := repositories.GetUserIdFromDb(email)
 		if err != nil {
@@ -21,9 +21,6 @@ func HomeController(w http.ResponseWriter, r *http.Request) {
 
 		playlists, err := repositories.SelectPlaylistsFromBd(userId)
 
-		// for i := range playlists {
-		// 	playlists[i].ImagePath = strings.ReplaceAll(playlists[i].ImagePath, "\\", "/")
-		// }
 		if err != nil {
 			log.Fatal(err)
 		}

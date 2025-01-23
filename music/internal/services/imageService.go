@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+//Uploads image in "uploads/"
+
 func UploadImage(file multipart.File, header *multipart.FileHeader) (string, error) {
 
 	title := header.Filename

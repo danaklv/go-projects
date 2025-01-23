@@ -6,9 +6,10 @@ import (
 )
 
 func Handlers() {
-
+    // ------- static files hadnlers --------
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("front/static/"))))
 	http.Handle("/uploads/", http.StripPrefix("/uploads/", http.FileServer(http.Dir("uploads/"))))
+	// --------------------------------------
 
 	http.HandleFunc("/", controllers.HomeController)
 
@@ -20,9 +21,9 @@ func Handlers() {
 	http.HandleFunc("/create", controllers.CreateController)
 	http.HandleFunc("/playlist/", controllers.PlaylistController)
 
-	http.HandleFunc("/sendResetCode", controllers.SendResetCodeController)
+	// http.HandleFunc("/sendResetCode", controllers.SendResetCodeController)
 	
-	http.HandleFunc("/resetPassword", controllers.ResetPasswordController)
+	// http.HandleFunc("/resetPassword", controllers.ResetPasswordController)
 
 	http.HandleFunc("/artist/", controllers.ArtistController)
 

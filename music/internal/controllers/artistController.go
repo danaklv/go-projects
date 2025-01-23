@@ -9,6 +9,8 @@ import (
 	"todo/repositories"
 )
 
+
+//Artist Page Handler
 func ArtistController(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 
@@ -29,6 +31,7 @@ func ArtistController(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//Upliad Artist Image
 func UploadArtistImageController(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
