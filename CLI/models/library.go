@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -22,6 +23,7 @@ type Book struct {
 
 func (library *Library) Add(author, title string) {
 
+	fmt.Println(author, title)
 	book := Book{
 		Author:         author,
 		Title:          title,
@@ -52,7 +54,7 @@ func (library *Library) Remove(index int) error {
 	return nil
 }
 
-func (library *Library) Edit(index int, title, author string) error {
+func (library *Library) Edit(index int, author, title string) error {
 
 	if err := library.ValidateIndex(index); err != nil {
 		return err

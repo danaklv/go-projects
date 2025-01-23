@@ -1,15 +1,17 @@
 package main
 
-import (
-	"cli/models"
-)
+import "cli/models"
 
 func main() {
 
 	var lib models.Library
 
-	lib.Add("Lev Tolstoy", "Anna Karenina")
-	lib.Complete(0)
-	lib.Print()
+	storage := NewStorage[models.Library]("library.json")
+	storage.Load(&lib)
+	
+	cmdFlags := NewCmdFlags()
+	cmdFlags.Execute(&lib)
+
+	storage.Save(lib)
 
 }
