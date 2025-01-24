@@ -8,7 +8,7 @@ func main() {
 
 	storage := NewStorage[models.Library]("library.json")
 	storage.Load(&lib)
-	
+
 	cmdFlags := NewCmdFlags()
 	cmdFlags.Execute(&lib)
 
