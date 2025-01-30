@@ -1,0 +1,81 @@
+/* Общий стиль для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+ 
+	background-color:  #E6E4D8;
+	color:  #22333B;
+   
+}
+
+/* Контейнер для логина и регистрации */
+.logreg {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Стили для формы логина */
+.login {
+    margin: 0 auto;
+}
+
+.login label {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.login input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Кнопки */
+.login button {
+    width: 90%;
+    padding: 10px;
+    background-color:#22333B;
+    color:  #E6E4D8;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* Установка расстояния между кнопками */
+form {
+    margin: 0;
+    padding: 0;
+}
+
+
+.text-button button {
+    background: none;
+    border: none;
+    color:  #22333B;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+}
